@@ -1,7 +1,6 @@
 # React Select-Box using Typescript
 
 This is a react based select-box component developed using Typescript.  
-Inspired from [Material-UI](https://github.com/callemall/material-ui).
 
 ## Features
   - [ ] Pass the Label Value
