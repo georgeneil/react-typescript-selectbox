@@ -1,5 +1,6 @@
 import * as React from 'react';
 import TextFieldLabel from './TextFieldLabel';
+import TextFieldUnderline from './TextFieldUnderline';
 import Transitions from '../styles/Transitions';
 
 function getStyles(props) {
@@ -10,7 +11,7 @@ function getStyles(props) {
             width: props.fullWidth ? '100%' : 256,
             height: (props.label ? 72 : 48),
             display: 'inline-block',
-            position: 'relative',
+            position: 'relative' as 'relative',
             backgroundColor: 'transparent',
             transition: Transitions.easeOut('200ms', 'height'),
             cursor: props.disabled ? 'not-allowed' : 'auto',
@@ -69,10 +70,10 @@ export default class TextField extends React.Component<Props, {}>{
         );
 
         return (
-            <div
-            >
+            <div style={styles.root}>
                 {textFieldLabelElement}
                 {inputElement}
+                <TextFieldUnderline />
             </div>
         );
     }

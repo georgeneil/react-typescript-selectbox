@@ -3,7 +3,7 @@ import Transitions from '../styles/Transitions';
 
 function getStyles(props) {
   const defaultStyles = {
-    position: 'absolute',
+    position: 'absolute' as 'absolute',
     lineHeight: '22px',
     top: 38,
     transition: Transitions.easeOut(),
@@ -12,6 +12,7 @@ function getStyles(props) {
     transformOrigin: 'left top',
     pointerEvents: 'auto',
     userSelect: 'none',
+    color: 'rgba(0, 0, 0, 0.3)'
   };
 
   const shrinkStyles = {
@@ -34,8 +35,7 @@ export default class TextFieldLabel extends React.Component<Props, {}>{
         const {children} = this.props;
 
         return (
-            <label
-            >
+            <label style={styles.root}>
                 {children}
             </label>
         );

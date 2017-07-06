@@ -12,6 +12,7 @@
         "noLib": false,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true,
+        "allowSyntheticDefaultImports": true,
         "typeRoots": [
           "./node_modules/@types"
         ]

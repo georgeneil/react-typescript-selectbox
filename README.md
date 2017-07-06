@@ -1,12 +1,14 @@
 # React Select-Box using Typescript
 
 This is a react based select-box component developed using Typescript.  
-Inspired from [Material-UI](https://github.com/callemall/material-ui).
 
 ## Features
-  - [ ] Pass the Label Value
+  - [x] Pass the Label Value
+  - [x] Pass the Default Value
+  - [x] Down-Arrow Icon
+  - [x] Separation as an Underline
+  - [ ] Drop-down Menu, Menu Item
   - [ ] Floating Effect for Label
-  - [ ] Pass Default Value
   - [ ] Option's change handler
   - [ ] Disable Mode
   - [ ] Auto Width
@@ -14,8 +16,9 @@ Inspired from [Material-UI](https://github.com/callemall/material-ui).
   - [ ] Secondary description for selected Menu Item
 
 ```typescript
-interface Props extends React.Props<Selectbox> {
+interface Props extends React.Props<SelectBox> {
     label : string;
+    value: number;
 };
 ```
 

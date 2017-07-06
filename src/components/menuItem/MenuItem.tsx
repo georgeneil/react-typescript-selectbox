@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface Props extends React.Props<MenuItem> {
-    dvalue: number;
+    itemValue: number;
     primaryText : string;
 };
 

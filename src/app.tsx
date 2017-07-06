@@ -6,31 +6,37 @@ import MenuItem from './components/menuItem/MenuItem';
 interface Props extends React.Props<App> {
 }
 const styles = {
+  root: {
+    fontFamily: 'sans-serif'
+  },
   block: {
     maxWidth: 250,
     padding: 20
   },
-  checkbox: {
-    marginBottom: 16
-  }
 };
 
 export default class App extends React.Component<Props, {}> {
   public render() {
     return (
-      <div>
+      <div style={styles.root}>
         <h1>React Component using Typescript</h1>
         <h2>SelectBox</h2>
         <div style={styles.block}>
           <SelectBox
-            label="Simple"
-            value={1}
+            label="Development Status ?"
+            value={2}
           >
-              <MenuItem dvalue={1} primaryText="Never" />
-              <MenuItem dvalue={2} primaryText="Every Night" />
-              <MenuItem dvalue={3} primaryText="Weeknights" />
-              <MenuItem dvalue={4} primaryText="Weekends" />
-              <MenuItem dvalue={5} primaryText="Weekly" />
+              <MenuItem itemValue={1} primaryText="Completed" />
+              <MenuItem itemValue={2} primaryText="Active" />
+              <MenuItem itemValue={3} primaryText="Deprecated" />
+          </SelectBox>
+          <SelectBox
+            label="Features Completed ?"
+            value={3}
+          >
+              <MenuItem itemValue={1} primaryText="One" />
+              <MenuItem itemValue={2} primaryText="Two" />
+              <MenuItem itemValue={3} primaryText="Three" />
           </SelectBox>
         </div>
       </div>

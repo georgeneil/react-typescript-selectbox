@@ -26,12 +26,8 @@ export default class SelectBox extends React.Component<Props, {}>{
         const {label, value, children} = this.props;
 
         return (
-            <TextField 
-                label={label}
-            >
-                <DropDownMenu
-                    value={value}
-                >
+            <TextField label={label}>
+                <DropDownMenu value={value}>
                     {children}
                 </DropDownMenu>
             </TextField>
