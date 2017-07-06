@@ -1,6 +1,9 @@
 # React Select-Box using Typescript
 
-This is a react based select-box component developed using Typescript.  
+This is a react based select-box component developed using Typescript.
+
+## Snapshot
+![Snapshot of Checkboxes](https://github.com/georgeneil/react-typescript-selectbox/blob/master/snapshot/snapshot.PNG)
 
 ## Features
   - [x] Pass the Label Value
@@ -20,6 +23,21 @@ interface Props extends React.Props<SelectBox> {
     label : string;
     value: number;
 };
+```
+
+## Usage
+
+### Basic:
+
+```jsx
+<SelectBox
+  label="Development Status ?"
+  value={2}
+>
+    <MenuItem itemValue={1} primaryText="Completed" />
+    <MenuItem itemValue={2} primaryText="Active" />
+    <MenuItem itemValue={3} primaryText="Deprecated" />
+</SelectBox>
 ```
 
 ## To install dependencies
