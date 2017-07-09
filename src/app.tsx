@@ -20,7 +20,7 @@ export default class App extends React.Component<Props, {}> {
     return (
       <div style={styles.root}>
         <h1>React Component using Typescript</h1>
-        <h2>SelectBox</h2>
+        <h2>SelectBoxes</h2>
         <div style={styles.block}>
           <SelectBox
             label="Development Status ?"
@@ -32,11 +32,12 @@ export default class App extends React.Component<Props, {}> {
           </SelectBox>
           <SelectBox
             label="Features Completed ?"
-            value={3}
+            value={4}
           >
               <MenuItem itemValue={1} primaryText="One" />
               <MenuItem itemValue={2} primaryText="Two" />
               <MenuItem itemValue={3} primaryText="Three" />
+              <MenuItem itemValue={4} primaryText="Four" />
           </SelectBox>
         </div>
       </div>

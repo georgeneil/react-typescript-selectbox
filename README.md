@@ -3,7 +3,7 @@
 This is a react based select-box component developed using Typescript.
 
 ## Snapshot
-![Snapshot of Checkboxes](https://github.com/georgeneil/react-typescript-selectbox/blob/master/snapshot/snapshot.PNG)
+![Snapshot of SelectBoxes](https://github.com/georgeneil/react-typescript-selectbox/blob/master/snapshot/screenshot.jpeg)
 
 ## Features
   - [x] Pass the Label Value
