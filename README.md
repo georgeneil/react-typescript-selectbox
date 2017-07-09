@@ -39,6 +39,8 @@ interface Props extends React.Props<SelectBox> {
     <MenuItem itemValue={3} primaryText="Deprecated" />
 </SelectBox>
 ```
+## Related Projects
+[React TypeScript Checkbox](https://github.com/georgeneil/react-typescript-checkbox)
 
 ## To install dependencies
 ```
