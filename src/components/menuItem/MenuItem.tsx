@@ -1,14 +1,16 @@
 import * as React from 'react';
 
-function getStyles(props) {
+function getStyles(props, state) {
     return {
         root: {
+            backgroundColor: state.hovered ? 'rgba(0, 0, 0, 0.1)' : null,
             color: 'rgba(0, 0, 0, 0.87)',
             cursor: 'pointer',
             minHeight: '32px',
             lineHeight: '32px',
             fontSize: 15,
             whiteSpace: 'nowrap' as 'nowrap',
+            padding: '0px 24px',
         }
     }
 };
@@ -16,21 +18,45 @@ function getStyles(props) {
 interface Props extends React.Props<MenuItem> {
     itemValue: number;
     primaryText : string;
+    onMouseUp?: any;
 };
 
 export default class MenuItem extends React.Component<Props, {}>{
-     public render() {
-        const styles = getStyles(this.props);
+    state = {
+        hovered: false,
+    }
+
+    handleMouseEnter = (event) => {
+        this.setState({hovered: true});
+    };
+
+    handleMouseLeave = (event) => {
+        this.setState({hovered: false});
+    };
+
+    handleMouseUp = (event) => {
+        if (this.props.onMouseUp) {
+            this.props.onMouseUp(event);
+        }
+    }
+
+    public render() {
+        const styles = getStyles(this.props, this.state);
         const {primaryText, children} = this.props;
 
         const mergedRootStyles = {...styles.root};
 
         return (
-            <div style={mergedRootStyles}>
+            <div 
+                style={mergedRootStyles}
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
+                onMouseUp={this.handleMouseUp}
+            >
                 <div>
                     {primaryText}
                 </div>
             </div>
         );
-     }
+    }
 }

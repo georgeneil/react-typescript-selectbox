@@ -52,7 +52,12 @@ function getStyles(props) {
 
 interface Props extends React.Props<DropDownMenu> {
     value: number;
+    onChange: any;
     iconButton?: any;
+    anchorOrigin?: {
+        vertical: string,
+        horizontal: string,
+    };
 };
 
 export default class DropDownMenu extends React.Component<Props, {}>{
@@ -61,6 +66,10 @@ export default class DropDownMenu extends React.Component<Props, {}>{
 
     static defaultProps = {
         iconButton: <ArrowDown />,
+        anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'left',
+        }
     };
 
     state = {
@@ -80,6 +89,12 @@ export default class DropDownMenu extends React.Component<Props, {}>{
         this.close();
     };
 
+    handleChange = (event, value) => {
+        if (this.props.onChange) {
+            this.props.onChange(event, undefined, value);
+        }
+    };
+
     close = () => {
         this.setState({
             open: false,
@@ -88,7 +103,7 @@ export default class DropDownMenu extends React.Component<Props, {}>{
 
     public render() {
         const styles = getStyles(this.props);
-        const {children, value, iconButton, ...other} = this.props;
+        const {children, value, iconButton, anchorOrigin, ...other} = this.props;
         // const {anchorEl, open } = this.state;
         
         let displayValue = '';
@@ -119,9 +134,13 @@ export default class DropDownMenu extends React.Component<Props, {}>{
                     ref="overlay"
                     open={this.state.open}
                     anchorEl={this.state.anchorEl}
+                    anchorOrigin={anchorOrigin}
                     onRequestClose={this.handleRequestCloseMenu}
                 >
-                    <Menu>
+                    <Menu
+                        value={value}
+                        onChange={this.handleChange}
+                    >
                         {children}
                     </Menu>
                 </Overlay>

@@ -15,10 +15,10 @@ interface Props extends React.Props<List> {
 export default class List extends React.Component<Props, {}>{
     public render() {
         const styles = getStyles(this.props);
-        const {children} = this.props;
+        const {style, children} = this.props;
 
         return (
-            <div style={styles.root}>
+            <div style={style}>
                 {children}
             </div>
         );

@@ -8,7 +8,7 @@ function getStyles(props) {
         root: {
             fontSize: 16,
             lineHeight: '24px',
-            width: props.fullWidth ? '100%' : 256,
+            width: 250,
             height: (props.label ? 72 : 48),
             display: 'inline-block',
             position: 'relative' as 'relative',

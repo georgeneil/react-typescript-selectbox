@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {unstable_renderSubtreeIntoContainer, unmountComponentAtNode} from 'react-dom';
+import Transitions from '../styles/Transitions';
 
 function getStyles(props) {
     return {
@@ -161,6 +162,10 @@ export default class Overlay extends React.Component<Props, {}>{
         targetEl.style.maxHeight = `${window.innerHeight}px`;
         targetEl.style.position = `fixed`;
         targetEl.style.backgroundColor = 'rgb(255, 255, 255)';
+        targetEl.style.transition = Transitions.easeOut();
+        targetEl.style.boxSizing = 'border-box';
+        targetEl.style.boxShadow = 'rgba(0, 0, 0, 0.12) 0px 1px 6px';
+        targetEl.style.fontFamily = 'sans-serif';
     };
 
     unrenderLayer() {

@@ -19,11 +19,14 @@ export default class SelectBox extends React.Component<Props, {}>{
 
     public render() {
         const styles = getStyles(this.props);
-        const {label, value, children} = this.props;
+        const {label, value, onChange, children} = this.props;
 
         return (
             <TextField label={label}>
-                <DropDownMenu value={value}>
+                <DropDownMenu
+                    value={value}
+                    onChange={onChange}
+                >
                     {children}
                 </DropDownMenu>
             </TextField>

@@ -4,7 +4,7 @@ import List from '../List/List';
 function getStyles(props) {
     return {
         root: {
-            zIndex: 1000,
+            zIndex: 2100,
             maxHeight: 500,
             overflowY: 'auto' as 'auto',
             width: 250
@@ -20,7 +20,8 @@ function getStyles(props) {
 };
 
 interface Props extends React.Props<Menu> {
-    // style: any;
+    value: number;
+    onChange: any;
 };
 
 export default class Menu extends React.Component<Props, {}>{
@@ -35,6 +36,34 @@ export default class Menu extends React.Component<Props, {}>{
         return filteredChildren;
     }
 
+    handleMenuItemTouchTap(event, item, index) {
+        let menuValue = this.props.value;
+        const itemValue = item.props.itemValue;
+
+        if (itemValue !== menuValue) {
+            this.props.onChange(event, itemValue)
+        }
+    }
+
+    cloneMenuItem(child, childIndex, styles, index) {
+
+        const mergedChildStyles = {...child.props.style};
+
+        // const extraProps = {
+        //     style: mergedChildStyles,
+        // };
+
+        const extraProps = {
+            style: mergedChildStyles,
+            onMouseUp: (event) => {
+                this.handleMenuItemTouchTap(event, child, index);
+                if (child.props.onTouchTap) child.props.onTouchTap(event);
+            },
+        };
+
+        return React.cloneElement(child, extraProps);
+    }
+
     public render() {
         const styles = getStyles(this.props);
         const {children} = this.props;
@@ -46,25 +75,10 @@ export default class Menu extends React.Component<Props, {}>{
 
         let menuItemIndex = 0;
         const newChildren = React.Children.map(filteredChildren, (child, index) => {
-            const childIsDisabled = (child as any).props.disabled;
             const childName = (child as any).type ? (child as any).type.muiName : '';
-            let newChild = child;
+            let newChild = this.cloneMenuItem(child, menuItemIndex, styles, index);
 
-            // switch (childName) {
-            //     case 'MenuItem':
-            //     newChild = this.cloneMenuItem(child, menuItemIndex, styles, index);
-            //     break;
-
-            //     case 'Divider':
-            //     newChild = React.cloneElement(child, {
-            //         style: Object.assign({}, styles.divider, child.props.style),
-            //     });
-            //     break;
-            // }
-
-            // if (childName === 'MenuItem' && !childIsDisabled) {
-            //     menuItemIndex++;
-            // }
+            menuItemIndex++;
 
             return newChild;
         });
@@ -72,7 +86,7 @@ export default class Menu extends React.Component<Props, {}>{
         return (
             <div
                 style={rootStyle}
-                role="presentation"
+                role="menu"
             >
                 <List
                     style={mergedListStyles}

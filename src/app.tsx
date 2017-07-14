@@ -17,10 +17,12 @@ const styles = {
 
 export default class App extends React.Component<Props, {}> {
   state = {
-    value: 1,
+    devStatusValue: 1,
+    featureCompValue: 4,
   };
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleDevStatusChange = (event, index, value) => this.setState({devStatusValue:value});
+  handleFeatureCompletedChange = (event, index, value) => this.setState({featureCompValue:value});
 
   public render() {
     return (
@@ -30,8 +32,8 @@ export default class App extends React.Component<Props, {}> {
         <div style={styles.block}>
           <SelectBox
             label="Development Status ?"
-            value={this.state.value}
-            onChange={this.handleChange}
+            value={this.state.devStatusValue}
+            onChange={this.handleDevStatusChange}
           >
               <MenuItem itemValue={1} primaryText="Completed" />
               <MenuItem itemValue={2} primaryText="Active" />
@@ -39,7 +41,8 @@ export default class App extends React.Component<Props, {}> {
           </SelectBox>
           <SelectBox
             label="Features Completed ?"
-            value={4}
+            value={this.state.featureCompValue}
+            onChange={this.handleFeatureCompletedChange}
           >
               <MenuItem itemValue={1} primaryText="One" />
               <MenuItem itemValue={2} primaryText="Two" />
