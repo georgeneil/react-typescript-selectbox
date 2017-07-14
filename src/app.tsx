@@ -16,6 +16,12 @@ const styles = {
 };
 
 export default class App extends React.Component<Props, {}> {
+  state = {
+    value: 1,
+  };
+
+  handleChange = (event, index, value) => this.setState({value});
+
   public render() {
     return (
       <div style={styles.root}>
@@ -24,7 +30,8 @@ export default class App extends React.Component<Props, {}> {
         <div style={styles.block}>
           <SelectBox
             label="Development Status ?"
-            value={2}
+            value={this.state.value}
+            onChange={this.handleChange}
           >
               <MenuItem itemValue={1} primaryText="Completed" />
               <MenuItem itemValue={2} primaryText="Active" />

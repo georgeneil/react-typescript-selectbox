@@ -2,6 +2,8 @@ import * as React from 'react';
 import Transitions from '../styles/Transitions';
 import ArrowDown from '../svg-icons/arrow-down';
 import IconButton from '../iconButton/IconButton';
+import Overlay from '../overlay/Overlay';
+import Menu from '../menu/Menu';
 
 function getStyles(props) {
     return {
@@ -55,14 +57,39 @@ interface Props extends React.Props<DropDownMenu> {
 
 export default class DropDownMenu extends React.Component<Props, {}>{
     private arrowNode: ArrowDown;
+    private rootNode: HTMLDivElement;
 
     static defaultProps = {
         iconButton: <ArrowDown />,
     };
 
+    state = {
+        open: false,
+        anchorEl: {}
+    };
+
+    handleMouseUp = (event) => {
+        event.preventDefault();
+        this.setState({
+            open: !this.state.open,
+            anchorEl: this.rootNode,
+        });
+    };
+
+    handleRequestCloseMenu = () => {
+        this.close();
+    };
+
+    close = () => {
+        this.setState({
+            open: false,
+        });
+    }
+
     public render() {
         const styles = getStyles(this.props);
         const {children, value, iconButton, ...other} = this.props;
+        // const {anchorEl, open } = this.state;
         
         let displayValue = '';
         React.Children.forEach(children, (child) => {
@@ -74,7 +101,11 @@ export default class DropDownMenu extends React.Component<Props, {}>{
 
         const rootStyle = {...styles.root, ...styles.control};
         return (
-            <div style={rootStyle}>
+            <div 
+                ref={(node) => this.rootNode = node}
+                style={rootStyle}
+                onMouseUp={this.handleMouseUp}
+            >
                 <div style={styles.label}>
                     {displayValue}
                 </div>
@@ -84,6 +115,16 @@ export default class DropDownMenu extends React.Component<Props, {}>{
                 >
                     {iconButton}
                 </IconButton>
+                <Overlay 
+                    ref="overlay"
+                    open={this.state.open}
+                    anchorEl={this.state.anchorEl}
+                    onRequestClose={this.handleRequestCloseMenu}
+                >
+                    <Menu>
+                        {children}
+                    </Menu>
+                </Overlay>
             </div>
         );
     }

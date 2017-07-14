@@ -11,15 +11,11 @@ function getStyles(props) {
 interface Props extends React.Props<SelectBox> {
     label : string;
     value: number;
+    onChange?: any;
 };
 
 export default class SelectBox extends React.Component<Props, {}>{
     private textInput: HTMLInputElement;
-
-    state = {
-        switched: false
-    };
-
 
     public render() {
         const styles = getStyles(this.props);
