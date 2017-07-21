@@ -16,6 +16,9 @@ function getStyles(props) {
             userSelect: 'none',
             width: 250,
         },
+        selectedMenuItem: {
+            color: 'rgb(255, 64, 129)'
+        }
     }
 };
 
@@ -45,13 +48,21 @@ export default class Menu extends React.Component<Props, {}>{
         }
     }
 
+    isChildSelected(child, props) {
+        const menuValue = props.value;
+        const childValue = child.props.itemValue;
+
+        return child.props.hasOwnProperty('itemValue') && menuValue === childValue;
+    }
+
     cloneMenuItem(child, childIndex, styles, index) {
 
-        const mergedChildStyles = {...child.props.style};
+        let mergedChildStyles = {...child.props.style};
 
-        // const extraProps = {
-        //     style: mergedChildStyles,
-        // };
+        const selected = this.isChildSelected(child, this.props);
+        if (selected) {
+            mergedChildStyles = {...mergedChildStyles, ...styles.selectedMenuItem};
+        }
 
         const extraProps = {
             style: mergedChildStyles,

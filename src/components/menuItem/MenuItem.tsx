@@ -18,6 +18,7 @@ function getStyles(props, state) {
 interface Props extends React.Props<MenuItem> {
     itemValue: number;
     primaryText : string;
+    style?: Object;
     onMouseUp?: any;
 };
 
@@ -42,9 +43,9 @@ export default class MenuItem extends React.Component<Props, {}>{
 
     public render() {
         const styles = getStyles(this.props, this.state);
-        const {primaryText, children} = this.props;
+        const {primaryText, style, children} = this.props;
 
-        const mergedRootStyles = {...styles.root};
+        const mergedRootStyles = {...styles.root, ...style};
 
         return (
             <div 

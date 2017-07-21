@@ -188,7 +188,6 @@ export default class Overlay extends React.Component<Props, {}>{
         } = this.props;
 
         if (open) {
-            this.layer = ReactDOM.findDOMNode<HTMLDivElement>(this);
             if (!this.layer) {
                 this.layer = document.createElement('div');
                 document.body.appendChild(this.layer);

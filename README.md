@@ -10,7 +10,7 @@ This is a react based select-box component developed using Typescript.
   - [x] Pass the Default Value
   - [x] Down-Arrow Icon
   - [x] Separation as an Underline
-  - [ ] Drop-down Menu, Menu Item
+  - [x] Drop-down Menu, Menu Item
   - [ ] Floating Effect for Label
   - [ ] Option's change handler
   - [ ] Disable Mode
