@@ -18,7 +18,7 @@ const styles = {
 export default class App extends React.Component<Props, {}> {
   state = {
     devStatusValue: 1,
-    featureCompValue: 4,
+    featureCompValue: 5,
   };
 
   handleDevStatusChange = (event, index, value) => this.setState({devStatusValue:value});
@@ -48,6 +48,7 @@ export default class App extends React.Component<Props, {}> {
               <MenuItem itemValue={2} primaryText="Two" />
               <MenuItem itemValue={3} primaryText="Three" />
               <MenuItem itemValue={4} primaryText="Four" />
+              <MenuItem itemValue={5} primaryText="Five" />
           </SelectBox>
         </div>
       </div>
