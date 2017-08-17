@@ -7,7 +7,7 @@ class Transitions {
       this.easeInOutFunction = 'cubic-bezier(0.445, 0.05, 0.55, 0.95)';
     }
 
-    easeOut(duration? : string, property? : string, delay? : string, easeFunction? : any) {
+    easeOut(duration? : string, property? : string | string[], delay? : string, easeFunction? : any) {
         easeFunction = easeFunction || this.easeOutFunction;
 
         if (property && Object.prototype.toString.call(property) === '[object Array]') {

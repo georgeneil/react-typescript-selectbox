@@ -2,8 +2,9 @@ import * as React from 'react';
 import Transitions from '../styles/Transitions';
 import ArrowDown from '../svg-icons/arrow-down';
 import IconButton from '../iconButton/IconButton';
-import Overlay from '../overlay/Overlay';
+import Popover from '../popover/Popover';
 import Menu from '../menu/Menu';
+import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 
 function getStyles(props) {
     return {
@@ -53,6 +54,7 @@ function getStyles(props) {
 interface Props extends React.Props<DropDownMenu> {
     value: number;
     onChange: any;
+    animated?: boolean;
     iconButton?: any;
     anchorOrigin?: {
         vertical: string,
@@ -65,6 +67,7 @@ export default class DropDownMenu extends React.Component<Props, {}>{
     private rootNode: HTMLDivElement;
 
     static defaultProps = {
+        animated: true,
         iconButton: <ArrowDown />,
         anchorOrigin: {
             vertical: 'top',
@@ -89,6 +92,13 @@ export default class DropDownMenu extends React.Component<Props, {}>{
         this.close();
     };
 
+    // handleComponentClickAway = (event) => {
+    //     event.preventDefault();
+    //     this.setState({
+    //         // open: false,
+    //     });
+    // };
+
     handleChange = (event, value) => {
         if (this.props.onChange) {
             this.props.onChange(event, undefined, value);
@@ -103,8 +113,7 @@ export default class DropDownMenu extends React.Component<Props, {}>{
 
     public render() {
         const styles = getStyles(this.props);
-        const {children, value, iconButton, anchorOrigin, ...other} = this.props;
-        // const {anchorEl, open } = this.state;
+        const {children, value, animated, iconButton, anchorOrigin, ...other} = this.props;
         
         let displayValue = '';
         React.Children.forEach(children, (child) => {
@@ -130,10 +139,12 @@ export default class DropDownMenu extends React.Component<Props, {}>{
                 >
                     {iconButton}
                 </IconButton>
-                <Overlay 
-                    ref="overlay"
+                <Popover 
+                    ref="popover"
                     open={this.state.open}
+                    animated={animated}
                     anchorEl={this.state.anchorEl}
+                    animation={PopoverAnimationVertical}
                     anchorOrigin={anchorOrigin}
                     onRequestClose={this.handleRequestCloseMenu}
                 >
@@ -143,7 +154,7 @@ export default class DropDownMenu extends React.Component<Props, {}>{
                     >
                         {children}
                     </Menu>
-                </Overlay>
+                </Popover>
             </div>
         );
     }

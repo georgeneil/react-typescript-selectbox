@@ -1,7 +1,10 @@
 import * as React from 'react';
 import List from '../List/List';
+import Transitions from '../styles/Transitions';
 
-function getStyles(props) {
+function getStyles(props, state) {
+    const {open} = state;
+
     return {
         root: {
             zIndex: 2100,
@@ -28,6 +31,22 @@ interface Props extends React.Props<Menu> {
 };
 
 export default class Menu extends React.Component<Props, {}>{
+
+    state = {
+        open: false,
+    };
+
+    timeout = null;
+
+    componentDidMount() {
+        this.setState({open: true});
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            open: nextProps.open,
+        });
+    }
 
     getFilteredChildren(children) {
         const filteredChildren = [];
@@ -76,7 +95,7 @@ export default class Menu extends React.Component<Props, {}>{
     }
 
     public render() {
-        const styles = getStyles(this.props);
+        const styles = getStyles(this.props, this.state);
         const {children} = this.props;
 
         const rootStyle = {...styles.root}
@@ -95,16 +114,16 @@ export default class Menu extends React.Component<Props, {}>{
         });
 
         return (
-            <div
-                style={rootStyle}
-                role="menu"
-            >
-                <List
-                    style={mergedListStyles}
+                <div
+                    style={rootStyle}
+                    role="menu"
                 >
-                    {newChildren}
-                </List>
-            </div>
+                    <List
+                        style={mergedListStyles}
+                    >
+                        {newChildren}
+                    </List>
+                </div>
         );
     }
 }
